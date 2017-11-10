@@ -1363,7 +1363,7 @@ pigeon服务里如果有任何IO操作，需要该IO操作支持callback编程�
 
 例如在一个pigeon服务里调用了cache操作，需要在cache框架也支持callback模式，然后在callback里调用pigeon的api去回写最终返回客户端的结果
 
-```
+```java
 @Service
 public class XXXDefaultService implements XXXService {
  
@@ -1419,7 +1419,7 @@ public class XXXDefaultService implements XXXService {
 3、改进后的基于服务级别的异步化方式
 不需要再去配置pigeon.provider.reply.manual，否则会影响整个应用，只需要在需要异步化的服务实现当中调用ProviderHelper.startAsync()获取ProviderContext后即可进行异步编程。参考代码如下：
 
-```
+```java
 @Service
 public class XXXDefaultService implements XXXService {
 
@@ -1568,7 +1568,7 @@ pigeon=为必须填的字符串，xxx-service代表客户端app名称，冒号:�
 
 d、SecurityUtils.encrypt方法可以参考下面代码，内部采用HmacSHA1算法，通过密钥对某个字符串进行签名，然后转换为base64编码：
 
-```
+```java
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Base64;
@@ -1640,7 +1640,7 @@ b、分为3个配置：
 需要实现一个`com.dianping.pigeon.remoting.provider.publish.PublishPolicy`接口，采用jdk的ServiceLoader方式加载。下面将给出一个使用示例。
 
 1、建议继承com.dianping.pigeon.remoting.provider.publish.AbstractPublishPolicy抽象类。例如：
-```
+```java
 package com.dianping.pigeon.benchmark.customize;
  
 import com.dianping.pigeon.config.ConfigManagerLoader;
@@ -1757,7 +1757,7 @@ pigeon在客户端调用和服务端调用都提供了拦截器机制，方便�
 注意：请不要在拦截器当中写消耗性能的代码，因为拦截器中的代码都是同步调用，如果执行太慢会影响服务调用的执行时间，用户如果想在拦截器中实现复杂逻辑，请自行进行异步处理。
 
 在客户端可以实现自己的拦截器：  
-```
+```java
 package com.dianping.pigeon.demo.interceptor;
   
 import com.dianping.pigeon.remoting.invoker.domain.InvokerContext;
@@ -1792,7 +1792,7 @@ com.dianping.pigeon.demo.interceptor.MyInvokerInterceptor
 
 
 同样的，在服务端也可以定义类似的拦截器：  
-```
+```java
 package com.dianping.pigeon.demo.interceptor;
  
 import com.dianping.pigeon.remoting.provider.domain.ProviderContext;
