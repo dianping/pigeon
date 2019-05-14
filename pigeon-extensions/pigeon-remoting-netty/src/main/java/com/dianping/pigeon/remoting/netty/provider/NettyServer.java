@@ -15,6 +15,7 @@ import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelFactory;
 import org.jboss.netty.channel.group.ChannelGroup;
 import org.jboss.netty.channel.group.DefaultChannelGroup;
+import org.jboss.netty.channel.socket.nio.NioServerBossPool;
 import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
 
 import com.dianping.pigeon.config.ConfigManagerLoader;
@@ -25,6 +26,8 @@ import com.dianping.pigeon.remoting.provider.config.ProviderConfig;
 import com.dianping.pigeon.remoting.provider.config.ServerConfig;
 import com.dianping.pigeon.threadpool.NamedThreadFactory;
 import com.dianping.pigeon.util.NetUtils;
+import org.jboss.netty.channel.socket.nio.NioWorkerPool;
+import org.jboss.netty.util.ThreadNameDeterminer;
 
 public class NettyServer extends AbstractServer implements Disposable {
 
@@ -44,8 +47,10 @@ public class NettyServer extends AbstractServer implements Disposable {
     private static final int workerCount = ConfigManagerLoader.getConfigManager().getIntValue(
             "pigeon.provider.netty.workercount", Runtime.getRuntime().availableProcessors() * 2);
 
-    private static ChannelFactory channelFactory = new NioServerSocketChannelFactory(bossExecutor, workerExecutor,
-            workerCount);
+    private static ChannelFactory channelFactory = new NioServerSocketChannelFactory(
+            new NioServerBossPool(bossExecutor,1, ThreadNameDeterminer.CURRENT),
+            new NioWorkerPool(workerExecutor,workerCount,ThreadNameDeterminer.CURRENT)
+    );
 
     public NettyServer() {
         this.bootstrap = new ServerBootstrap(channelFactory);
