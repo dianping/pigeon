@@ -112,13 +112,12 @@ public final class ServicePublisher {
 			throws RegistryException {
 		String url = providerConfig.getUrl();
 		boolean existingService = false;
-		for (String key : serviceCache.keySet()) {
-			ProviderConfig<?> pc = serviceCache.get(key);
-			if (pc.getUrl().equals(url)) {
+		for (ProviderConfig<?> value : serviceCache.values()) {
+			if (StringUtils.equals(value.getUrl(),url)){
 				existingService = true;
 				break;
 			}
-		}
+		} 
 		if (logger.isInfoEnabled()) {
 			logger.info("try to publish service to registry:" + providerConfig + ", existing service:"
 					+ existingService);
