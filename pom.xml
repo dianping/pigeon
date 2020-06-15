@@ -19,7 +19,7 @@
 		<!-- Used common package -->
 		<pigeon.version>${project.version}</pigeon.version>
 		<guava.version>18.0</guava.version>
-		<spring.version>3.2.9.RELEASE</spring.version>
+		<spring.version>5.2.7.RELEASE</spring.version>
 		<netty.version>3.9.2.Final</netty.version>
 		<commons-httpclient.version>3.1</commons-httpclient.version>
 		<thrift.version>0.8.0</thrift.version>
