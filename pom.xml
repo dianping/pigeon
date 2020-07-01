@@ -34,7 +34,7 @@
 		<protobuf-java.version>3.2.0</protobuf-java.version>
 		<junit.version>4.11</junit.version>
 		<log4j-api.version>2.3</log4j-api.version>
-		<log4j-core.version>2.3</log4j-core.version>
+		<log4j-core.version>2.13.2</log4j-core.version>
 		<protostuff.version>1.1.0</protostuff.version>
 		<objenesis.version>2.1</objenesis.version>
 		<fst.version>1.63</fst.version>
