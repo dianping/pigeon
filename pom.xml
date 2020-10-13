@@ -32,7 +32,7 @@
 		<snappy-java.version>1.1.1.6</snappy-java.version>
 		<hessian.version>3.1.5</hessian.version>
 		<protobuf-java.version>3.2.0</protobuf-java.version>
-		<junit.version>4.11</junit.version>
+		<junit.version>4.13.1</junit.version>
 		<log4j-api.version>2.3</log4j-api.version>
 		<log4j-core.version>2.3</log4j-core.version>
 		<protostuff.version>1.1.0</protostuff.version>
